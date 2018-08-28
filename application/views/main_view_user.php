@@ -1,4 +1,4 @@
-<?php require_once($this->config->item('file_path').'/views/layout.php');?>
+<?php require_once($this->config->item('file_path').'views/layout.php');?>
 <body>
 
 <div id="container">
