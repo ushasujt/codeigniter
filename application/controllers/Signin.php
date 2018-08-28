@@ -40,7 +40,8 @@ class Signin extends CI_Controller {
 					$savedName = $res[0]['us_user_name'];
 					$last_name = $res[0]['us_last_name'];
 					$first_name = $res[0]['us_first_name'];
-					$sessionArray = array('ug_group_type'=>1,
+					$group_type = $res[0]['ug_group_type'];
+					$sessionArray = array('ug_group_type'=>$group_type,
 										 'user_name'=>$savedName,
 										 'login_user'=>1,
 										 'first_name'=>$first_name,

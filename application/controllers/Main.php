@@ -23,14 +23,14 @@ class Main extends MY_controller {
 	 */
 	public function index()
 	{
-		$signUrl = $this->config->item('base_url') . 'signin/logout';
-			if($this->session->userdata('ug_group_type')=='1')
-			{
-				$this->load->view('main_view_admin');
-			}else if($this->session->userdata('ug_group_type')=='2'){
-				$this->load->view('main_view_user');
-			}else{
-				redirect($signUrl);
-			}
+		$signUrl = $this->config->item('base_url') . 'signin/logout';	
+		if($this->session->userdata('ug_group_type')=='1')
+		{
+			$this->load->view('main_view_admin');
+		}else if($this->session->userdata('ug_group_type')=='2'){
+			$this->load->view('main_view_user');
+		}else{
+			redirect($signUrl);
+		}
 	}
 }
