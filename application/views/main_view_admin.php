@@ -63,41 +63,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		border: 1px solid #D0D0D0;
 		box-shadow: 0 0 8px #D0D0D0;
 	}
+	.logout{
+		float:right;
+		width:150px;
+		font-size:13px;
+		text-align:right;
+	}
 	</style>
 </head>
 <body>
 
 <div id="container">
-	<h1>Welcome!</h1>
-
+	<h1>Welcome <?php echo $this->session->userdata('first_name').' '.$this->session->userdata('last_name') ?>
+	<div class="logout"><a href="<?php echo $this->config->item('base_url') . 'signin/logout'; ?>">Sign Out</a></div>
+</h1>
+	
 	<div id="body">
-		<?php echo form_open('signin/login');
-		echo form_label('User Name :', 'u_name');
-$data = array(
-'name' => 'u_name',
-'placeholder' => 'Please Enter User Name',
-);
-echo form_input($data);
+		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
-$data = array(
-'name' => 'u_pass',
-'type'=>'password',
-'placeholder' => 'Please Enter Password',
-);
-echo form_input($data);
+		<p>If you would like to edit this page you'll find it located at:</p>
+		<code>application/views/welcome_message.php</code>
 
-		?>
+		<p>The corresponding controller for this page is found at:</p>
+		<code>application/controllers/Welcome.php</code>
 
-<button type="submit" class="btn btn-primary">
-Sign In</button>
-
-<span><?php echo $message; ?></span>
-
-<?php echo form_close(); ?>
-		
+		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 	</div>
 
-	
+	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
 </div>
 
 </body>

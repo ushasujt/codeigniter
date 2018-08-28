@@ -3,23 +3,15 @@ class Commonmodel extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-    }
-
-    function loginSessionCheck() {
-        if ($this->session->userdata('login_user')) {
-            return true;
-        } else {
-            $url = $this->config->item('site_url') . '/signin/logOut';
-            redirect($url);
-        }
-    }
+    }    
 	
 	public function signIn($data)
 	{
-		$this->db->select('users_username,users_password,users_active');
-		$this->db->where('users_username',$data);
-		$res = $this->db->get('zhemr_users');
-		return $res;
+		$this->db->select('B.ug_group_type,us_user_name,us_password,us_first_name,us_last_name,us_status');
+        $this->db->join('eq_user_groups AS B','B.ug_master_id=A.ug_master_id');
+		$this->db->where('us_user_name',$data);
+		$res = $this->db->get('eq_users AS A');
+		return $res->result_array();
 	}
 
 }

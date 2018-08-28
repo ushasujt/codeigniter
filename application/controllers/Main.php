@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Main extends MY_controller {
 	public function __construct()
 	{
-		parent::__construct();
-		//$this->oad
+		parent::__construct();		
 	}
 	/**
 	 * Index Page for this controller.
@@ -24,12 +23,14 @@ class Main extends MY_controller {
 	 */
 	public function index()
 	{
-	$var = $this->config->item('base_url') . 'signin/login';			
-		if($this->session->userdata('user_name'))
-		{
-			$this->load->view('main_view');
-		}else{
-			redirect($var);
-		}
+		$signUrl = $this->config->item('base_url') . 'signin/logout';
+			if($this->session->userdata('ug_group_type')=='1')
+			{
+				$this->load->view('main_view_admin');
+			}else if($this->session->userdata('ug_group_type')=='2'){
+				$this->load->view('main_view_user');
+			}else{
+				redirect($signUrl);
+			}
 	}
 }

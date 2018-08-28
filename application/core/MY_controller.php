@@ -20,8 +20,12 @@ class MY_controller extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		ini_set("error_reporting", E_ALL & ~E_NOTICE);
 		$this->load->model("Commonmodel");
-		//$this->Commonmodel->loginSessionCheck();
+		if (!$this->session->userdata('login_user')) {           
+        	$signUrl = $this->config->item('base_url') . 'signin/logout';	
+        	redirect($signUrl);
+        }
 		
 	}
 }
